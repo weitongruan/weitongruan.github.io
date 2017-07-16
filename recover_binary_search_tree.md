@@ -25,7 +25,7 @@ if node.val < prev.val, we find the node
 
 For the first swaped node, it should be the **prev**, while for the second, it should be the **node**.
 
-
+For corner cases,
 
 ```python
 
