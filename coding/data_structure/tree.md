@@ -1,4 +1,4 @@
 
 ## Table of Problems
 
-[99 Recover Binary Search Tree](weitongruan.github.io/tree/recover_binary_search_tree)
+[99 Recover Binary Search Tree](weitongruan.github.io/coding/data_structure/tree/recover_binary_search_tree)
