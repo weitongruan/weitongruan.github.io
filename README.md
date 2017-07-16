@@ -2,9 +2,9 @@ This is a place where I post some of the interesing (or fundamental) machine lea
 
 ## Coding for Leetcode problems
 
-### Data Structure
+[Data Structure](https://weitongruan.github.io/data_structure)
 
-### Algorithms
+[Algorithms](https://weitongruan.github.io/algorithms)
 
 
 ## Machine Learning
