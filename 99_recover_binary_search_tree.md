@@ -1,4 +1,4 @@
-## 99 Recover Binary Search Tree
+# 99 Recover Binary Search Tree
 
 One of the features of Binary Search Tree is that when you use in order depth first traversal, the value of each node is goint to appear in increasing(non-decreasing) order or sorted order.
 
