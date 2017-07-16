@@ -3,6 +3,6 @@
 
 ## Linked List
 
-[Tree](https://weitongruan.github.io/tree)
+[Tree](https://weitongruan.github.io/coding/data_structure/tree)
 
-[Graph](https://weitongruan.github.io/graph)
+[Graph](https://weitongruan.github.io/coding/data_structure/graph)
