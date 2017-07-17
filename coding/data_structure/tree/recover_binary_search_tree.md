@@ -26,7 +26,7 @@ node.val < prev.val
 
 For the first swaped node, the node in the wrong position  should be **prev**, while for the second, it should be the **node**.
 
-Up to here, we almost have a general idea of what this algorithm should look like. It will perform an **in-order traversal** of the tree, which takes **O(n)** time, and we only **constant space**.
+Up to here, we almost have a general idea of what this algorithm should look like. It will perform an **in-order traversal** of the tree, which takes **O(n)** time. In terms of space, because of the recursive call, it's **O(logn)**.
 
 ***
 #### Corner cases:
