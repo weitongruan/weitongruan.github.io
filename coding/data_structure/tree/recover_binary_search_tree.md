@@ -1,5 +1,6 @@
-### 99 Recover Binary Search Tree
+### 99. Recover Binary Search Tree
 
+#### General Idea:
 One of the features of Binary Search Tree is that when you use in order depth first traversal, the value of each node is goint to appear in increasing(non-decreasing) order or sorted order.
 
 For example, as in this form:
@@ -16,17 +17,26 @@ When two are accidentally swaped, it would result in a new list, such as:
 
 so what we can do here is to find the two wrong nodes and swap them back.
 
-One way to find those two, is to use a pointer "**prev**" that points to the previous node and compare the value of the current node with that of the previous one,
+One way to find those two, is to use a pointer "**prev**" that points to the previous node and compare the value of the current node with that of the previous one. The special cases that we are looking for is:
 
 
 ```text
-if node.val < prev.val, we find the node
+node.val < prev.val
 ```
 
-For the first swaped node, it should be the **prev**, while for the second, it should be the **node**.
+For the first swaped node, the node in the wrong position  should be **prev**, while for the second, it should be the **node**.
 
+Up to here, we almost have a general idea of what this algorithm should look like. It will perform an **in-order traversal** of the tree, which takes **O(n)** time, and we only **constant space**.
 
+***
+#### Corner cases:
 
+Need to pay attention to the cases where there are fewer than two nodes in the tree.
+
+***
+#### Codes:
+
+Basics of TreeNode class:
 ```python
 
 # Definition for a binary tree node.
@@ -37,6 +47,8 @@ For the first swaped node, it should be the **prev**, while for the second, it s
 #         self.right = None
 
 ```
+
+My first iterative algorithm looks like:
 
 ```python
 
@@ -75,5 +87,76 @@ class Solution(object):
         wrong_nodes = dfs_inorder(root)
         wrong_nodes[0].val, wrong_nodes[1].val = wrong_nodes[1].val, wrong_nodes[0].val
         
+```
+
+It can be easily improved to this, getting rid of the flag:
+
+```python
+
+class Solution(object):
+    def recoverTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: void Do not return anything, modify root in-place instead.
+        """
+        
+        def dfs_inorder(node):
+            first, second = None, None
+            stack = []
+            prev = TreeNode(-int('inf'))
+            while stack or node:
+                if node:
+                    stack.append(node)
+                    node = node.left
+                else:
+                    node = stack.pop()
+                    if not first and node.val < prev.val:
+                        first, second = prev, node
+                    elif first and node.val < prev.val:
+                        second = node
+                        return (first, second)
+                    prev, node = node, node.right
+            return (first, second)
+                    
+        wrong_nodes = dfs_inorder(root)
+        wrong_nodes[0].val, wrong_nodes[1].val = wrong_nodes[1].val, wrong_nodes[0].val
+        
+```
+
+For a recursive algorithm:
+
+(Note: we make first and second and pre a list is to make them mutable)
+
+```python
+
+class Solution(object):
+    def recoverTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: void Do not return anything, modify root in-place instead.
+        """
+        
+        first, second = [], [None]
+        pre = [TreeNode(-float('inf'))]
+        
+        def dfs_inorder(node):
+
+            if not node:
+                return
+            
+            dfs_inorder(node.left)
+            
+            if not len(first) and node.val < pre[0].val:
+                first.append(pre[0])
+            if len(first) and node.val < pre[0].val:
+                second[0] = node
+            
+            pre[0] = node
+                
+            dfs_inorder(node.right)
+            return
+              
+        dfs_inorder(root)
+        first[0].val, second[0].val = second[0].val, first[0].val
 
 ```
