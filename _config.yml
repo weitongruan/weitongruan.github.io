@@ -1,3 +1,5 @@
 theme: jekyll-theme-cayman
 
 title: [Weitong's Blog]
+
+show_downloads: true
