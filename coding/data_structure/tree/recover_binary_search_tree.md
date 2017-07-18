@@ -9,7 +9,7 @@ For example, as in this form:
 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 ```
 
-When two are accidentally swaped, it would result in a new list, such as:
+When two are accidentally swapped, it would result in a new list, such as:
 
 ```math
 1, 2, 8, 4, 5, 6, 7, 3, 9 ,10
@@ -24,14 +24,14 @@ One way to find those two, is to use a pointer "**prev**" that points to the pre
 node.val < prev.val
 ```
 
-For the first swaped node, the node in the wrong position  should be **prev**, while for the second, it should be the **node**.
+For the first swapped node, the node in the wrong position  should be **prev**, while for the second, it should be the **node**.
 
-Up to here, we almost have a general idea of what this algorithm should look like. It will perform an **in-order traversal** of the tree, which takes **O(n)** time. In terms of space, because of the recursive call, it's **O(logn)**.
+Up to here, we almost have a general idea of what this algorithm should look like. It will perform an **in-order traversal** of the tree, which takes **O(n)** time. In terms of space, because of the recursive call, it’s **O(n)**.
 
 ***
 #### Corner cases:
 
-Need to pay attention to the cases where there are fewer than two nodes in the tree.
+Need to pay attention to the case where the swapped nodes are next to each other.
 
 ***
 #### Codes:
