@@ -2,5 +2,5 @@ theme: jekyll-theme-cayman
 
 title: [Weitong's Blog]
 
-show_downloads: true
-is_project_page: true
+show_downloads: false
+is_project_page: false
