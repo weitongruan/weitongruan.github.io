@@ -1,4 +1,4 @@
-### An example on how to use matrix operation to get rid of for loops
+### An example on using matrix operation to replace for loops
 
 Recently, I ran into a case where I was given a matrix `$A$` of size `$m \times n$` and another matrix `$B$` with the same size.
 
