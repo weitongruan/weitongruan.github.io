@@ -148,9 +148,35 @@ However, matrix operation is not always the winner. If we compare the following 
 To figure out why, I make the following changes to the code:
 
 ```python
-C = np.expand_dims(A.T, axis=2)
-D = np.conj(np.expand_dims(A.T, axis=1))
-B2 = np.expand_dims(B.T, axis=2)
+import numpy as np
+import time
+m, n = 50, 1000
+
+A = np.random.randn(m, n) + 1j* np.random.randn(m, n)
+B = np.random.randn(m, n) + 1j* np.random.randn(m, n)
+print('Shape of A: ', A.shape)
+print('Shape of B: ', B.shape)
+
+B1 = B
+start = time.time()
+for i in range(A.shape[1]):
+    P = np.outer(A[:, i], np.conj(A[:, i])) / A.shape[0]
+    B1[:, i] -= P.dot(B1[:, i])
+end = time.time()
+print('Running time of for loop is: ', end - start, 's')
+
+start = time.time()
+A_transpose = A.T
+B_transpose = B.T
+end = time.time()
+print('Running time of matrix transpose is: ', end-start, 's')
+
+start = time.time()
+C = np.expand_dims(A_transpose, axis=2)
+D = np.conj(np.expand_dims(A_transpose, axis=1))
+B2 = np.expand_dims(B_transpose, axis=2)
+end = time.time()
+print('Running time of matrix reshape is: ', end-start, 's')
 
 start = time.time()
 P = np.matmul(C, D) / A.shape[0]
@@ -162,14 +188,17 @@ end = time.time()
 print('Running time of matrix operation is: ', end - start, 's')
 
 
-# prints
+# prints:
 # Shape of A:  (50, 1000)
 # Shape of B:  (50, 1000)
-# Running time of for loop is:  0.13768696784973145 s
-# Running time of matrix operation is:  0.06257510185241699 s
+# Running time of for loop is:  0.05406689643859863 s
+# Running time of matrix transpose is:  8.296966552734375e-05 s
+# Running time of matrix reshape is:  0.0004200935363769531 s
+# Running time of matrix operation is:  0.07828092575073242 s
+
 ```
 
-This basically provides the explanation: It's most likely the **np.expand_dims ("reshape")** that slows down the matrix operation.
+This basically provides the explanation: It's the **np.matmul()** that slows down the matrix operation.
 
 
 
