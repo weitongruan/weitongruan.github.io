@@ -1,13 +1,11 @@
 ### An example on using matrix operation to replace for loops
 
-Recently, I ran into a case where I was given a matrix `$A$` of size `$m \times n$` and another matrix `$B$` with the same size.
+Recently, I ran into a case where I was given a matrix $A$ of size $m \times n$ and another matrix `$B$` with the same size.
 
 The objective here is to update matrix `$B$` where the `$i$`-th column of `$B$`
 
 ```math
-
 b_i = P_i b_i \quad \text{where} \quad P_i = I - \frac{1}{m} a_i a_i^H
-
 ```
 
 what this is actually doing is to project `$b_i$` (or each column of `$B$`) on to a subspace orthogonal to `$a_i$` (its corresponding column in `$A$`)
@@ -17,14 +15,12 @@ what this is actually doing is to project `$b_i$` (or each column of `$B$`) on t
 This can be easily coded with a naive **for** loop.
 
 ```python
-
 # say A and B and both numpy arrays
 # import numpy as np
 
 for i in range(A.shape[1]):
     P = np.outer(A[:, i], np.conj(A[:, i])) / A.shape[0]
     B[:, i] -= P.dot(B[:, i])
-
 ```
 
 This approach becomes slower when `$n$` is large, because the naive **for** loop is not optimized.
@@ -34,9 +30,7 @@ You can probably try to use **multiprocessor** to process this, but I take advan
 As an example,
 
 ```math
-
 matmul((200, 20, 90), (200, 90, 70)) = (200, 20, 70)
-
 ```
 where `$(200, 20, 90)$` represents a matrix of size `$200 \times 20 \times 90$`.
 
@@ -45,44 +39,37 @@ I believe most people already know where this is going. In our case, we can simp
 Let's "reshape" both `$A$` and `$B$` to make them of size `$n \times m \times 1$`. This can be easily implemented using the following code:
 
 ```python
-
 A1 = np.expand_dims(A.T, axis=2)
 B = np.expand_dims(B.T, axis=2)
 # after the expand_dims, A becomes 1*m*n, then the transpose
 # make it n*m*1
 # Transpose in here swap the 0th and 2nd index
-
 ```
+
 To compute outer product, we need another matrix from `$A$`, let's build another ndarray `$A2$` from `$A$` of size `$n \times 1 \times m$`
 
 ```python
-
 A2 = np.expand_dims(A.T, axis=1)
-
 ```
 
 The above **for** loop can be easily implemented as:
 
 ```python
-
 P = np.matmul(A1, np.conj(A2)) / A.shape[0]
 B -= np.matmul(P, B)
 # up till now, B is of size n*m*1
 B = B[:,:,0].T  # resulting in a matrix of size m*n
-
 ```
 
 To get rid of all these unnecessary variables, we can simply compress it as the following:
 
 ```python
-
 P = np.matmul(np.expand_dims(A.T, axis=2), \
               np.conj(np.expand_dims(A.T, axis=1))) / A.shape[0]
 B = np.expand_dims(B.T, axis=2)
 B -= np.matmul(P, B)
 # up till now, B is of size n*m*1
 B = B[:,:,0].T
-
 ```
 
 A simple experiment demonstrates the improvement.
@@ -128,14 +115,11 @@ else:
 # Running time of for loop is:  0.013581037521362305 s
 # Running time of matrix operation is:  0.0006909370422363281 s
 # B1, B2 are the same!
-
-
 ```
 
 However, matrix operation is not always the winner. If we compare the following results, we notice that it is very sensitive to `$m$`. if `$m$` is small, `$n$` can be relatively large, while matrix operation still offers huge improvement. However, when `$m$` gets larger, the matrix operation slows down and eventually becomes slower than naive for loop.
 
 ```python
-
 # Shape of A:  (10, 10000)
 # Shape of B:  (10, 10000)
 # Running time of for loop is:  0.16220903396606445 s
@@ -159,13 +143,11 @@ However, matrix operation is not always the winner. If we compare the following 
 # Running time of for loop is:  0.055570363998413086 s
 # Running time of matrix operation is:  0.15408706665039062 s
 # B1, B2 are the same!
-
 ```
     
 To figure out why, I make the following changes to the code:
 
 ```python
-
 C = np.expand_dims(A.T, axis=2)
 D = np.conj(np.expand_dims(A.T, axis=1))
 B2 = np.expand_dims(B.T, axis=2)
@@ -185,7 +167,6 @@ print('Running time of matrix operation is: ', end - start, 's')
 # Shape of B:  (50, 1000)
 # Running time of for loop is:  0.13768696784973145 s
 # Running time of matrix operation is:  0.06257510185241699 s
-
 ```
 
 This basically provides the explanation: It's most likely the **np.expand_dims ("reshape")** that slows down the matrix operation.
