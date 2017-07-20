@@ -9,6 +9,7 @@
 
 
 ---
+---
 <a name='unique_binary_search_tree'></a>
 ### 96 Unique Binary Search Trees
 
@@ -86,6 +87,7 @@ One simple improvements we can make it to take advantage of the symmetry propert
 When the keys to a hash table (dictionary) is integers (0-N), we can simply use a array(list) to achieve the same functionality.
 
 
+---
 ---
 <a name='recover_binary_search_tree'></a>
 ### 99. Recover Binary Search Tree
@@ -250,6 +252,7 @@ class Solution(object):
         first[0].val, second[0].val = second[0].val, first[0].val
 ```
 
+---
 ---
 <a name='recover_binary_search_tree_with_morris_traversal'></a>
 ### 99 Recover Binary Search Tree with Morris Traversal:
