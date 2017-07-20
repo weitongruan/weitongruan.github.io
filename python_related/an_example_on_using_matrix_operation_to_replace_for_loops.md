@@ -1,6 +1,6 @@
 ### An example on using matrix operation to replace for loops
 
-Recently, I ran into a case where I was given a matrix $A$ of size $m \times n$ and another matrix `$B$` with the same size.
+Recently, I ran into a case where I was given a matrix $$A$$ of size $$m \times n$$ and another matrix `$B$` with the same size.
 
 The objective here is to update matrix `$B$` where the `$i$`-th column of `$B$`
 
