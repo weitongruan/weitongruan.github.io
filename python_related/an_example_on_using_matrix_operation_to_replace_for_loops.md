@@ -8,7 +8,7 @@ $$ b_i = P_i b_i \quad \text{where} \quad P_i = I - \frac{1}{m} a_i a_i^H $$
 
 what this is actually doing is to project $$b_i$$ (or each column of $$B$$) on to a subspace orthogonal to $$a_i$$ (its corresponding column in $$A$$)
 
-**(Note: Since I'm dealing with complex numbers, I use `$H$` to represent conjugate transpose, which is equivalent to `$T$` (transpose) in real domain. The same applies in the code below.)**
+**(Note: Since I'm dealing with complex numbers, I use $$H$$ to represent conjugate transpose, which is equivalent to $$T$$ (transpose) in real domain. The same applies in the code below.)**
 
 This can be easily coded with a naive **for** loop.
 
@@ -21,20 +21,19 @@ for i in range(A.shape[1]):
     B[:, i] -= P.dot(B[:, i])
 ```
 
-This approach becomes slower when `$n$` is large, because the naive **for** loop is not optimized.
+This approach becomes slower when $$n$$ is large, because the naive **for** loop is not optimized.
 
 You can probably try to use **multiprocessor** to process this, but I take advantage of the **matmul** function in **numpy**. [Here](https://docs.scipy.org/doc/numpy/reference/generated/numpy.matmul.html) is the detailed domumentation for this function. The feature that I take advantage of is it's ability to compute two ndarrays of dimension greater than 2 (3 in my case). According to the documentation, when calling this function with two ndarrays of dimension 3, the function would treat both ndarrays as a stack of 2d matrices, where the last two indices specify the matrices, and perform matrix multiplication per stack(layer).
 
 As an example,
 
-```math
-matmul((200, 20, 90), (200, 90, 70)) = (200, 20, 70)
-```
-where `$(200, 20, 90)$` represents a matrix of size `$200 \times 20 \times 90$`.
+$$ matmul((200, 20, 90), (200, 90, 70)) = (200, 20, 70) $$
 
-I believe most people already know where this is going. In our case, we can simply "reshape" (not exactly reshape, but to add one dimension) our matrices `$A$` and `$B$`.
+where $$(200, 20, 90)$$ represents a matrix of size $$200 \times 20 \times 90$$.
 
-Let's "reshape" both `$A$` and `$B$` to make them of size `$n \times m \times 1$`. This can be easily implemented using the following code:
+I believe most people already know where this is going. In our case, we can simply "reshape" (not exactly reshape, but to add one dimension) our matrices $$A$$ and $$B$$.
+
+Let's "reshape" both $$A$$ and $$B$$ to make them of size $$n \times m \times 1$$. This can be easily implemented using the following code:
 
 ```python
 A1 = np.expand_dims(A.T, axis=2)
@@ -44,7 +43,7 @@ B = np.expand_dims(B.T, axis=2)
 # Transpose in here swap the 0th and 2nd index
 ```
 
-To compute outer product, we need another matrix from `$A$`, let's build another ndarray `$A2$` from `$A$` of size `$n \times 1 \times m$`
+To compute outer product, we need another matrix from $$A$$, let's build another ndarray $$A2$$ from $$A$$ of size $$n \times 1 \times m$$
 
 ```python
 A2 = np.expand_dims(A.T, axis=1)
@@ -115,7 +114,7 @@ else:
 # B1, B2 are the same!
 ```
 
-However, matrix operation is not always the winner. If we compare the following results, we notice that it is very sensitive to `$m$`. if `$m$` is small, `$n$` can be relatively large, while matrix operation still offers huge improvement. However, when `$m$` gets larger, the matrix operation slows down and eventually becomes slower than naive for loop.
+However, matrix operation is not always the winner. If we compare the following results, we notice that it is very sensitive to $$m$$. if $$m$$ is small, $$n$$ can be relatively large, while matrix operation still offers huge improvement. However, when $$m$$ gets larger, the matrix operation slows down and eventually becomes slower than naive for loop.
 
 ```python
 # Shape of A:  (10, 10000)
