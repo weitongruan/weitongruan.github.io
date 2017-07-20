@@ -1,14 +1,14 @@
 ### An example on using matrix operation to replace for loops
 
-Recently, I ran into a case where I was given a matrix $$A$$ of size $$m \times n$$ and another matrix `$B$` with the same size.
+Recently, I ran into a case where I was given a matrix $$A$$ of size $$m \times n$$ and another matrix $$B$$ with the same size.
 
-The objective here is to update matrix `$B$` where the `$i$`-th column of `$B$`
+The objective here is to update matrix $$B$$ where the $$i$$-th column of $$B$$
 
 ```math
-b_i = P_i b_i \quad \text{where} \quad P_i = I - \frac{1}{m} a_i a_i^H
+$$ b_i = P_i b_i \quad \text{where} \quad P_i = I - \frac{1}{m} a_i a_i^H $$
 ```
 
-what this is actually doing is to project `$b_i$` (or each column of `$B$`) on to a subspace orthogonal to `$a_i$` (its corresponding column in `$A$`)
+what this is actually doing is to project $$b_i$$ (or each column of $$B$$) on to a subspace orthogonal to $$a_i$$ (its corresponding column in $$A$$)
 
 **(Note: Since I'm dealing with complex numbers, I use `$H$` to represent conjugate transpose, which is equivalent to `$T$` (transpose) in real domain. The same applies in the code below.)**
 
