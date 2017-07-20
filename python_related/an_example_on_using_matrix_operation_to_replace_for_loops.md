@@ -2,11 +2,9 @@
 
 Recently, I ran into a case where I was given a matrix $$A$$ of size $$m \times n$$ and another matrix $$B$$ with the same size.
 
-The objective here is to update matrix $$B$$ where the $$i$$-th column of $$B$$
+The objective here is to update matrix $$B$$ where the $$i$$-th column of $$B$$:
 
-```math
 $$ b_i = P_i b_i \quad \text{where} \quad P_i = I - \frac{1}{m} a_i a_i^H $$
-```
 
 what this is actually doing is to project $$b_i$$ (or each column of $$B$$) on to a subspace orthogonal to $$a_i$$ (its corresponding column in $$A$$)
 
