@@ -5,6 +5,8 @@
 
 [96 Unique Binary Search Trees I](#unique_binary_search_trees)
 
+[98 Validate Binary Search Tree](#validate_binary_search_tree)
+
 [99 Recover Binary Search Tree](#recover_binary_search_tree)
 
 [99 Revover Binary Search Tree with Morris Traversal](#recover_binary_search_tree_with_morris_traversal)
@@ -147,6 +149,79 @@ One simple improvements we can make it to take advantage of the symmetry propert
 
 When the keys to a hash table (dictionary) is integers (0-N), we can simply use a array(list) to achieve the same functionality.
 
+---
+---
+<a name='validate_binary_search_tree'></a>
+### 98 Validate Binary Search Tree
+
+#### General Idea:
+
+To validate if a given tree is BST, we need to stick to its definition.
+
+For a BST:
+
+* value of the root should be larger than the maximum from its left subtree
+* value of the root should be smaller than the minimum from its right subtree
+* both left and right subtrees should also be BSTs
+
+The first algorithm we can try is to do in-order traversal and make sure the value of each node we output is increasing.
+
+The second is to use a top down checking algorithm, checking if the tree satifies the BST condition level by level.
+
+---
+#### Codes
+
+```python
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+```
+A recursive in-order traversal algorithm:
+
+```python
+class Solution(object):
+    def isValidBST(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        prev = [TreeNode(-float('inf'))]
+        res = [True]
+        def dfs_inorder(node):
+            if not node: return
+            dfs_inorder(node.left)
+            if node.val <= prev[0].val:
+                res[0] = False
+            prev[0] = node
+            dfs_inorder(node.right)
+        
+        dfs_inorder(root)
+        return res[0]
+```
+A recursive algorithm
+
+```python
+class Solution(object):
+    def isValidBST(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        def helper(node, minNode, maxNode):
+            if not node:
+                return True
+            # node level has to satisfy these conditions    
+            if (minNode and node.val <= minNode.val) or \
+               (maxNode and node.val >= maxNode.val):
+                return False
+            # both left and right subtree also has to be BST
+            return helper(node.left, minValue, node) and \
+                   helper(node.right, node, maxValue)
+                   
+        return helper(root, None, None)
 
 ---
 ---
