@@ -1,16 +1,77 @@
 
 ## Table of Problems
 
-[96 Unique Binary Search Trees I](#unique_binary_search_tree)
+[95 Unique Binary Search Trees II](#unique_binary_search_trees_2)
+
+[96 Unique Binary Search Trees I](#unique_binary_search_trees)
 
 [99 Recover Binary Search Tree](#recover_binary_search_tree)
 
 [99 Revover Binary Search Tree with Morris Traversal](#recover_binary_search_tree_with_morris_traversal)
 
+---
+---
+<a name='unique_binary_search_trees_2'></a>
+### 95 Unique Binary Search Trees II
+
+The problem can be found in [here](https://leetcode.com/problems/unique-binary-search-trees-ii/#/description).
+
+Compared with #96, the problem requires the complete set of unique BSTs.
+
+#### General Idea:
+
+Divide and Conquer:
+
+suppose we have a function **generate(i, j)** which takes in a start **i** and a end **j** **(i <= j)** and generate a list of roots each corresponds to a unique BST.
+
+Then our result **generateTrees(n)** is simply **generate(1, n)**.
+
+To implement **generate(i,j)**, all we need to do is to use an iterator **k** loops from **i** to **j**, each time selecting **k** as the root build trees such that root.left is from **generate(i, k-1)** and root.right is from **generate(k, j)**.
+
+---
+##### Codes
+
+```python
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+```
+
+```python
+class Solution(object):
+    def generateTrees(self, n):
+        """
+        :type n: int
+        :rtype: List[TreeNode]
+        """
+        if not n:
+            return []
+        else:
+            return self.generate(1, n)
+    
+    def generate(self, i, j):
+        ret = []
+        if i > j:
+            ret.append(None)
+        else:
+            for k in range(i, j+1):
+                left = self.generate(i, k-1)
+                right = self.generate(k+1, j)
+                for subtreeleft in left:
+                    for subtreeright in right:
+                        root = TreeNode(k)
+                        root.left = subtreeleft
+                        root.right = subtreeright
+                        ret.append(root)
+        return ret
+```
 
 ---
 ---
-<a name='unique_binary_search_tree'></a>
+<a name='unique_binary_search_trees'></a>
 ### 96 Unique Binary Search Trees
 
 #### General idea:
