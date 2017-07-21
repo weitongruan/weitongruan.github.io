@@ -16,7 +16,7 @@
 
 The problem can be found in [here](https://leetcode.com/problems/unique-binary-search-trees-ii/#/description).
 
-Compared with #96, the problem requires the complete set of unique BSTs.
+Compared with [#96](#unique_binary_search_trees), the problem requires the complete set of unique BSTs.
 
 #### General Idea:
 
