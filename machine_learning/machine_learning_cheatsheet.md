@@ -58,6 +58,7 @@ Because the cost function is convex, there is a global optimal solution to minim
 $$
 \theta = \left( X^T X \right)^{-1} X^T y
 $$
+
 ---
 
 
