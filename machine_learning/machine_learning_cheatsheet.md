@@ -21,9 +21,9 @@ $$
 y = Xw + b
 $$
 
-where $$y$$ is a vector of continuous values that you are interested in, $$X$$ is a design matrix where each row corresponds to all the features from one sample, $$w$$ is a weight vector and $$b$$ is a intercept or a constant offset.
+where $$y$$ is a vector of continuous values that you are interested in (target), $$X$$ is a design matrix where each row corresponds to all the features from one sample, $$w$$ is a weight vector and $$b$$ is a intercept or a constant offset.
 
-This model assumes that for every sample $$x_i$$ ($$i$$-th row in $$X$$, reshaped as a column vector), its corresponding value (something value that you are interested in) can be represented as 
+This model assumes that for every sample $$x_i$$ ($$i$$-th row in $$X$$, reshaped as a column vector), its corresponding target can be represented as 
 
 $$
 y_i = w^Tx_i + b.
@@ -58,6 +58,24 @@ Because the cost function is convex, there is a global optimal solution to minim
 $$
 \theta = \left( X^T X \right)^{-1} X^T y
 $$
+
+(Some of my thoughts: when the dataset is small, we are encouraged use this analytic solution directly, but when the dataset is large, we might need to refer to iterative approaches, such as (stochastic) gradient descent, I guess due to the inverse of the large matrix $$X^TX$$.)
+
+#### Extras:
+
+Linear regression has a nice probabilistic interpretation, where for each sample, the target can be represented as 
+
+$$
+y_i = \theta^T x_i + \epsilon_i
+$$
+
+where $$\epsilon_i$$ models either noise or part of the data that can not be explained by the model. With the assumption that the $$\epsilon_i$$ are IID Gaussian distributed and with the **maximum likelihood** that produces the cost function
+
+$$
+L(\theta) = - \log p(y | X ; \theta)
+$$
+
+(Note: here `$L$` stands for **loss** instead of **likelihood**)
 
 ---
 
