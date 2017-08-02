@@ -11,6 +11,8 @@
 
 [99 Revover Binary Search Tree with Morris Traversal](#recover_binary_search_tree_with_morris_traversal)
 
+[105 Construct Binary Tree from Preorder and Inorder Traversal](#construct_binary_tree_from_preorder_and_inorder_traversal)
+
 ---
 ---
 <a name='unique_binary_search_trees_2'></a>
@@ -447,3 +449,87 @@ class Solution(object):
 
         first.val, second.val = second.val, first.val
 ```
+
+---
+---
+<a name='construct_binary_tree_from_preorder_and_inorder_traversal'></a>
+
+### 105 Construct Binary Tree from Preorder and  Inorder Traversal
+
+#### Genreal Idea:
+
+Let's first take a look at a toy example, where we have a binary tree:
+
+10 
+
+5 17
+
+3 12 8  19
+
+The preorder traversal would give a list:
+
+$$
+\left[ 10, 5, 3, 12, 17, 8, 19 \right]
+$$
+
+and the inorder traversal give another list:
+
+$$
+\left[ 3, 5, 12, 10, 8, 17, 19 \right]
+$$
+
+Apparently, the **first element** in the **preorder** list gives the **root**, which is **10** in our example.
+
+Then we can find **root** in the inorder list. Every node appears **before root** in inorder list is from the **left** subtree of **root** and every node appears **after root**  is from the **right** subtree of **root**.
+
+From here, it's easy to have a recursive algorithm where the **root** can be easily found and the **root.left** comes from the a recursive call of the same algorithm with inorder and preorder lists **containing only the elements from the left subtree** and the same applies for the **root.right**.
+
+
+---
+
+#### Codes:
+
+Use a dictionary for fast access of the indices.
+
+```python
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+```
+
+```python
+class Solution(object):
+    def buildTree(self, preorder, inorder):
+        """
+        :type preorder: List[int]
+        :type inorder: List[int]
+        :rtype: TreeNode
+        """
+        
+        if len(preorder) != len(inorder):
+            raise ValueError("preorder and inorder don't have the same size")
+          
+        pre_table, in_table = {}, {}
+        for i in range(len(preorder)):
+            pre_table[preorder[i]] = i
+            in_table[inorder[i]] = i
+            
+        
+        def helper(pre_start, pre_end, in_start, in_end):
+            if pre_start > pre_end:
+                return
+                
+            root = TreeNode(preorder[pre_start])
+            i = in_table[root.val]
+            root.left = helper(pre_start+1, pre_start+i-in_start, in_start, i-1)
+            root.right = helper(pre_start+i-in_start+1, pre_end, i+1, in_end)
+            return root
+        
+        return helper(0, len(preorder)-1, 0, len(inorder)-1)
+```
+
+
+---
