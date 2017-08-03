@@ -13,6 +13,8 @@
 
 [105 Construct Binary Tree from Preorder and Inorder Traversal](#construct_binary_tree_from_preorder_and_inorder_traversal)
 
+[106 Construct Binary Tree from Inorder and Postorder Traversal](#construct_binary_tree_from_inorder_and_postorder_traversal)
+
 ---
 ---
 <a name='unique_binary_search_trees_2'></a>
@@ -529,6 +531,57 @@ class Solution(object):
             return root
         
         return helper(0, len(preorder)-1, 0, len(inorder)-1)
+```
+
+
+---
+---
+<a name='construct_binary_tree_from_inorder_and_postorder_traversal'></a>
+### 106 Construct Binary Tree from Inorder and Postorder Traversal
+
+#### General Idea:
+
+This problem is similar to [#105](#construct_binary_tree_from_preorder_and_inorder_traversal), but we have postorder list instead of preorder list.
+
+The idea would be similar.
+
+---
+#### Codes:
+
+```python
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+```
+
+```python
+class Solution(object):
+    def buildTree(self, inorder, postorder):
+        """
+        :type inorder: List[int]
+        :type postorder: List[int]
+        :rtype: TreeNode
+        """
+        
+        def helper(ii, ij, pi, pj):
+            if ii > ij:
+                return
+            
+            root = TreeNode(postorder[pj])
+            i = di[postorder[pj]]
+            root.left = helper(ii, i-1, pi, pi+i-ii-1)
+            root.right = helper(i+1, ij, pi+i-ii, pj-1)
+            return root
+        
+        if len(inorder) == len(postorder) and len(inorder) != 0:
+            di = {}
+            for i in range(len(inorder)):
+                di[inorder[i]] = i
+            
+            return helper(0, len(inorder)-1, 0, len(inorder)-1)
 ```
 
 
