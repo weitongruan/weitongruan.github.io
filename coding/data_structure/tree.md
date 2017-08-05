@@ -15,6 +15,8 @@
 
 [106 Construct Binary Tree from Inorder and Postorder Traversal](#construct_binary_tree_from_inorder_and_postorder_traversal)
 
+[110 Balanced Binary Tree](#balanced_binary_tree)
+
 ---
 ---
 <a name='unique_binary_search_trees_2'></a>
@@ -583,6 +585,66 @@ class Solution(object):
             
             return helper(0, len(inorder)-1, 0, len(inorder)-1)
 ```
+
+
+---
+---
+<a name='balanced_binary_tree'></a>
+### 110 Balanced Binary Tree
+
+#### General Idea:
+
+To test if a tree is balanced, we need to test whether the depths of the subtrees differ by more than one.
+
+This can be implemented using a ** top-down ask then bottom-up check algorithm**.
+
+For a tree/subtree with **root** to be a balanced tree, we need to make sure that first each subtree is balanced and then
+
+```math
+abs(depth(root.left) - depth(root.right)) <= 1
+```
+
+#### Codes:
+
+```python
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+```
+
+```python
+class Solution(object):
+    def isBalanced(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        if not root:
+            return True
+        
+        def depth(root):
+            if not root:
+                return 0
+            
+            left = depth(root.left)
+            right = depth(root.right)
+            if abs(left - right) > 1:
+                raise Exception
+            
+            return max(left, right) + 1
+        
+        try:
+            return abs(depth(root.left) - depth(root.right)) <= 1
+        except:
+            return False
+```
+
+#### Tricks
+
+The tricky part in the above algorithm is to throw an exception when the subtree building from the leaves is alrady not balanced, in which case we don't need to continue going up just return False directly.
 
 
 ---
