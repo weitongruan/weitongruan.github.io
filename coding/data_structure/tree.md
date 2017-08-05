@@ -596,7 +596,7 @@ class Solution(object):
 
 To test if a tree is balanced, we need to test whether the depths of the subtrees differ by more than one.
 
-This can be implemented using a ** top-down ask then bottom-up check algorithm**.
+This can be implemented using a **top-down ask then bottom-up check algorithm**.
 
 For a tree/subtree with **root** to be a balanced tree, we need to make sure that first each subtree is balanced and then
 
