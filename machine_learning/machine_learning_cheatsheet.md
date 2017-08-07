@@ -76,11 +76,11 @@ $$
 L(\theta) = - \log p(y | X ; \theta)
 $$
 
-(Note: here `$L$` stands for **loss** instead of **likelihood**)
+(Note: here $$L$$ stands for **loss** instead of **likelihood**)
 
 #### Extras II:
 
-In the above, for each sample we have features `$x_i$`, just to remember here `$ features \ne inputs$`. For example, for a sample, we have its 2D coordinates `$(p, q)$`. Here `$inputs = (p, q)$`, however `$features = g(p, q)$` where `$g$` can be any function of `$(p, q)$`.
+In the above, for each sample we have features $$x_i$$, just to remember here $$ features \ne inputs$$. For example, for a sample, we have its 2D coordinates $$(p, q)$$. Here $$inputs = (p, q)$$, however $$features = g(p, q)$$ where $$g$$ can be any function of $$(p, q)$$.
 
 
 ---
