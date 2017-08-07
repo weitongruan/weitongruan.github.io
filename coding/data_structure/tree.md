@@ -1,3 +1,7 @@
+## General Idea when dealing with trees
+
+Always start with recursive algorithms, then iterative.
+
 
 ## Table of Problems
 
