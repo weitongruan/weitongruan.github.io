@@ -104,7 +104,7 @@ $$
 \lim_{x \to - \infty} g(x) = 0 \qquad \lim_{x \to + \infty} g(x) = 1 \qquad g(0) = \frac{1}{2}
 $$
 
-The plot of the sigmoid function can be found in [here](#https://en.wikipedia.org/wiki/Sigmoid_function).
+The plot of the sigmoid function can be found in [here](https://en.wikipedia.org/wiki/Sigmoid_function).
 
 
 
