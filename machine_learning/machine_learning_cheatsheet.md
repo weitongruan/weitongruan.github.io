@@ -7,6 +7,7 @@ Sometimes if you don't look at them everyday, the memory about them becomes rela
 Table of contents:
 
 - [Linear Regression](#linear_regression)
+- [Logistic Regression](#logistic_regression)
 
 Let's start with most fundamental task/algorithm, Linear Regression, which serves as the foundation or building block of lots of advanced machine learning algorithms (including **neural networks** and **deep learning**)
 
@@ -77,9 +78,31 @@ $$
 
 (Note: here `$L$` stands for **loss** instead of **likelihood**)
 
+#### Extras II:
+
+In the above, for each sample we have features `$x_i$`, just to remember here `$ features \ne inputs$`. For example, for a sample, we have its 2D coordinates `$(p, q)$`. Here `$inputs = (p, q)$`, however `$features = g(p, q)$` where `$g$` can be any function of `$(p, q)$`.
+
+
 ---
 
+### Logistic Regression
+<a name='logistic_regression'></a>
 
+In previous section, we talked about regression and the easiest algorithm [linear regression](#linear_regression). In this part, we are going to introduce the classification problem, another fundamental problem in machine learning. Compeard with regression problem where the target is continuous, in classification problems, the target is dicrete (i.e. class labels).
+
+The name of logistic regression is a little interesting because it is indeed a classification algorithm. However, it comes with the name logistic regression because it has a very close relationship with linear regression and logit function.
+
+Logistic regression deals with the binary classification problem where the target is  from a set of two class labels `$\{0, 1\}$`. Starting from the previous [linear regression](#linear_regression), where the targets are from `$- \infty$` to `$+ \infty$`, people start to ask if there is a non-linear function that maps `$[ - \infty, + \infty ]$` to `$[0, 1]$`. The most widely used in the old days (10 or 20 years ago) is the logitistic/sigmoid (inverse of logit function) function, where 
+
+$$
+logistic(x) = g(x) = \frac{e^x}{1+e^x} = \frac{1}{1+e^{-x}}
+$$
+
+$$
+\lim_{x \to - \infty} g(x) = 0 \qquad \lim_{x \to + \infty} g(x) = 1 \qquad g(0) = \frac{1}{2}
+$$
+
+The plot of the sigmoid function can be found in [here](#https://en.wikipedia.org/wiki/Sigmoid_function).
 
 
 
