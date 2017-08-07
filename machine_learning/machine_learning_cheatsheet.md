@@ -11,8 +11,9 @@ Table of contents:
 
 Let's start with most fundamental task/algorithm, Linear Regression, which serves as the foundation or building block of lots of advanced machine learning algorithms (including **neural networks** and **deep learning**)
 
-### Linear Regression
+
 <a name='linear_regression'></a>
+### Linear Regression
 
 #### Model:
 
@@ -85,8 +86,9 @@ In the above, for each sample we have features $$x_i$$, just to remember here $$
 
 ---
 
-### Logistic Regression
+
 <a name='logistic_regression'></a>
+### Logistic Regression
 
 In previous section, we talked about regression and the easiest algorithm [linear regression](#linear_regression). In this part, we are going to introduce the classification problem, another fundamental problem in machine learning. Compeard with regression problem where the target is continuous, in classification problems, the target is dicrete (i.e. class labels).
 
