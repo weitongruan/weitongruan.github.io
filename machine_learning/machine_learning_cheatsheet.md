@@ -63,7 +63,7 @@ $$
 
 (Some of my thoughts: when the dataset is small, we are encouraged use this analytic solution directly, but when the dataset is large, we might need to refer to iterative approaches, such as (stochastic) gradient descent, I guess due to the inverse of the large matrix $$X^TX$$.)
 
-#### Extras:
+#### Extras I:
 
 Linear regression has a nice probabilistic interpretation, where for each sample, the target can be represented as 
 
