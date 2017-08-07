@@ -94,7 +94,7 @@ In previous section, we talked about regression and the easiest algorithm [linea
 
 The name of logistic regression is a little interesting because it is indeed a classification algorithm. However, it comes with the name logistic regression because it has a very close relationship with linear regression and logit function.
 
-Logistic regression deals with the binary classification problem where the target is  from a set of two class labels `$\{0, 1\}$`. Starting from the previous [linear regression](#linear_regression), where the targets are from `$- \infty$` to `$+ \infty$`, people start to ask if there is a non-linear function that maps `$[ - \infty, + \infty ]$` to `$[0, 1]$`. The most widely used in the old days (10 or 20 years ago) is the logitistic/sigmoid (inverse of logit function) function, where 
+Logistic regression deals with the binary classification problem where the target is  from a set of two class labels $$\{0, 1\}$$. Starting from the previous [linear regression](#linear_regression), where the targets are from $$- \infty$$ to $$+ \infty$$, people start to ask if there is a non-linear function that maps $$[ - \infty, + \infty ]$$ to $$[0, 1]$$. The most widely used in the old days (10 or 20 years ago) is the logitistic/sigmoid (inverse of logit function) function, where 
 
 $$
 logistic(x) = g(x) = \frac{e^x}{1+e^x} = \frac{1}{1+e^{-x}}
