@@ -28,7 +28,7 @@ and add them together element-wise.
 ```python
 M = M1 + M2
 ```
-**But, how to create these two matrices?** A efficient implementation is to use the **np.broadcast_to()**.
+**But, how to create these two matrices?** An efficient implementation is to use the **np.broadcast_to()**.
 
 ```python
 M1 = np.broadcast_to(a[:, np.newaxis], (4, 5))
@@ -45,7 +45,7 @@ M = a[:, np.newaxis] + b[np.newaxis, :]
 ----
 The broadcasting rule for add/minus/product ndarrays element-wise is: if they are of the same shape, keep the original shape; if they are not of the same shape, for all those axes that differ have to be 1 from either two.
 
-I know it's hard to understant, in our previous example, `a[:, np.newaxis]` creates an implicit matrix $$A$$ of size $$4 \times 1$$, and the same for $$B$$ of size $$1 \times 5$$. Since the shape of$$A$$ and $$B$$ differ in both axes, when we want to add them element-wise, in terms of the first axis, $$B$$ has shape 1 and in terms of the second axis, $$A$$ is of shape 1, so broadcasting rule satisfies here. 
+I know it's hard to understant, in our previous example, `a[:, np.newaxis]` creates an implicit matrix $$A$$ of size $$4 \times 1$$, and the same for $$B$$ of size $$1 \times 5$$. Since the shape of $$A$$ and $$B$$ differ in both axes, when we want to add them element-wise, in terms of the first axis, $$B$$ has shape 1 and in terms of the second axis, $$A$$ is of shape 1, so broadcasting rule satisfies here. 
 
 #### Note:
 **Broadcasting provides clean code and faster implementation, however, avoid using it when the size of the ndarray gets large, e.g. 10000 * 100 * 20. It will take too much memory for storing the large ndarray and slow down the algorithm.** This explains our observation in previous [post](https://weitongruan.github.io/python_related/an_example_on_using_matrix_operation_to_replace_for_loops).
