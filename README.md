@@ -16,7 +16,7 @@ This is a place where I post some of the interesing (or fundamental) machine lea
 
 [An example on using matrix operation to replace for loops](https://weitongruan.github.io/python_related/an_example_on_using_matrix_operation_to_replace_for_loops)
 
-[Broadcasting in Numpy](https://weitongruan.github.io/python_related/broadcast_in_numpy)
+[Broadcasting in Numpy](https://weitongruan.github.io/python_related/broadcasting_in_numpy)
 
 
 
