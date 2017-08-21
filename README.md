@@ -12,7 +12,7 @@ This is a place where I post some of the interesing (or fundamental) machine lea
 
 [Machine Learning Cheatsheet](https://weitongruan.github.io/machine_learning/machine_learning_cheatsheet)
 
-[Deep Learning Related](https://weitongruan.github.io/deep_learning_related)
+[Deep Learning Related](https://weitongruan.github.io/machine_learning/deep_learning_related)
 
 ## Python Related
 
