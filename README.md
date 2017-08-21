@@ -14,7 +14,7 @@ This is a place where I post some of the interesing (or fundamental) machine lea
 
 [Deep Learning Related](https://weitongruan.github.io/machine_learning/deep_learning_related)
 
-[NLP Related](https://weitongruan.github.io/machine_learning/nlp_realted)
+[NLP Related](https://weitongruan.github.io/machine_learning/nlp_related)
 
 ## Python Related
 
