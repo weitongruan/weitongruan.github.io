@@ -33,9 +33,13 @@ There are ***two main approaches*** to ***scaling up NPLMs to large vocabularies
 
 $$
 P^h(D=1 \lvert w, \theta) = \frac{P^h_\theta (w)}{P^h_\theta (w) + k P_n(w)} = \sigma(\Delta s_\theta (w, h)) 
+$$
 
+$$
 \Delta s_\theta (w, h) = s_\theta (w, h) - \log(k P_n(w))
+$$
 
+$$
 P^h_\theta (w) = \exp( s_\theta (w, h))
 $$
 
