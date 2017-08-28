@@ -106,5 +106,65 @@ $$
 
 The plot of the sigmoid function can be found in [here](https://en.wikipedia.org/wiki/Sigmoid_function).
 
+#### Model:
 
+We first define the the probability of being either $$1 \text{ or } 0$$,
+
+$$
+P(y=1 \lvert x; w) = g_w \left( x \right) = g(w^Tx + b)
+
+P(y=0 \lvert x; w) = 1 - g_w \left( x \right).
+$$
+
+Then with an independence model, the probability of an instance can be written as:
+
+$$
+P(y \lvert x; w) = \left( P(y=1 \lvert x; w) \right)^{y} \left( 1 - P(y=1 \lvert x; w) \right) ^{1-y} 
+
+= \left( g_w \left( x \right) \right)^{y} \left( 1 - g_w \left( x \right) \right) ^{1-y}
+$$
+
+#### Parameters:
+
+The parameters needs to be estimated from the training data are the same as those in [linear regression](#linear_regression).
+
+#### Cost function
+
+As with the [linear regression](#linear_regression), the cost function is from the ***negative log likelihood***, which has the form:
+
+$$
+L(\theta) = - \sum_{i=1}^{n} y_i \log g_{\theta}(x_i) + \left( 1 - y_i \right) \log \left( 1- g_{\theta}(x_i) \right) 
+$$
+
+#### Parameter estimation algorithm
+
+The update equation is for the `$j$`-th element of parameter $$\theta$$ is
+
+$$
+\theta_j = \theta_j + \alpha \left( y_i - g_{\theta}(x_i) \right) x_{i,j}
+$$
+
+where $$\alpha$$ is called the learning rate or step size. (Note, it has the same form as in linear regression except the form of $$g_{\theta}(x)$$.)
+
+
+#### Extra I:
+
+Logistic regression can be easily extended to dealing with multiple classes, resulting in a model called ***Softmax Regression***. The revised cost function has the form:
+
+$$
+L(\theta) = - \sum_{i=1}^{n} \log \prod_{l=1}^{k} \left( \frac{\exp \left( \theta_{l}^T x_i \right)}{\sum_{j=1}^{k} \exp \left( \theta_{k}^T x_i \right)} \right)^{1 \{y_i = l \}}
+$$
+
+Here we have `$k$` classes in total, each $$\theta_l$$ is optimized for the $$l$$-th class and $${1 \{y_i = l \}}$$ stands for a indicator random variable where it generates $$1$$ only when $$y_i = l$$ and $$0$$ otherwise.
+
+Softmax is commonly used as the final layer to generate class labels in Neural Nets/ Deep Learning, most likely due to its probabilistic interpretation.
+
+
+#### Extra II:
+
+Another "similar" algorithm is called the Perceptron learning algorithm. Compared with Logistic function, where the ouput is conitnuous in the range $$[-1, 1]$$, the non-linearity function used in perceptron is piece-wise constant.
+
+$$
+g(x) = \begin{cases} 1 & x \geq 0 \\ 0 & x < 0 \end{cases}
+$$
 
