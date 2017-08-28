@@ -138,7 +138,7 @@ $$
 
 #### Parameter estimation algorithm
 
-The update equation is for the `$j$`-th element of parameter $$\theta$$ is
+The update equation is for the $$j$$-th element of parameter $$\theta$$ is
 
 $$
 \theta_j = \theta_j + \alpha \left( y_i - g_{\theta}(x_i) \right) x_{i,j}
