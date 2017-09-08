@@ -1,4 +1,4 @@
-### Continuous Sum Problems
+### Maximum Continuous Sum Problems
 
 In this post, let's focus on a set of problems which requires a maximum sum across a continuous region (subarray in arrays or path in trees). The same methodology can be applied to arrays, linked-lists and (binary) trees.
 
