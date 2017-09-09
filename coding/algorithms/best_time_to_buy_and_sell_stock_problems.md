@@ -7,6 +7,8 @@ Table of Contests:
 - [Leetcode 121. Best Time to Buy and Sell Stock](#121_btbss1)
 - [Leetcode 122. Best Time to Buy and Sell Stock II](#122_btbss2)
 - [Leetcode 123. Best Time to Buy and Sell Stock III](#123_btbss3)
+- [Leetcode 188. Best Time to Buy and Sell Stock IV](#188_btbss4)
+- [Leetcode 309. Best Time to Buy and Sell Stock with Cooldown](#309_btbss5)
 
 
 
@@ -86,13 +88,110 @@ class Solution(object):
         return profit
 ```
 
-#### Buy and sell at most k times
+#### Buy and sell at most twice
 
 <a name='123_btbss3'></a>
 
 The problem can be found in here:
 
 [Leetcode 123. Best Time to Buy and Sell Stock III](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/description/)
+
+In this problem, we are required to perform at most two transactions.
+
+The idea is as follows: For the first transaction, it performs the same as the previous problem, but we store the maximum profit (`max_profit_here[i] = max(max_profit_here[i-1], profit_if_sell_here)`) at each time index. For the second transaction, a `temp_max` keeps track of the maximum `max_profit_here` from previous transaction minus the `prices[i]`. This `temp_max` stores from current time index `i`, what's the best time to start the second transaction. 
+
+```python
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        if not len(prices):
+            return 0
+        
+        n = len(prices)
+        k = 2
+        mph = [[0]*n for _ in range(k+1)] # max_profit_here
+        # Notice the first row of mph is all zeroes
+        # which makes the first iteration of i the same as problem 1
+        
+        for i in range(1, k+1):
+            temp_max = mph[i-1][0] - prices[0]
+            for j in range(1, n):
+                mph[i][j] = max(mph[i][j-1], prices[j] + temp_max)
+                temp_max = max(temp_max, mph[i-1][j]-prices[j])
+                
+        return mph[-1][-1]
+```
+
+```python
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        if not len(prices):
+            return 0
+        
+        n = len(prices)
+        k = 2
+        mph = [[0]*n for _ in range(2)] # max_profit_here
+        # Reduce space complexity from O(k*n) to O(n)
+        
+        for i in range(k):
+            temp_max = mph[i%2][0] - prices[0]
+            for j in range(1, n):
+                mph[(i+1)%2][j] = max(mph[(i+1)%2][j-1], prices[j] + temp_max)
+                temp_max = max(temp_max, mph[i%2][j]-prices[j])
+                
+        return mph[(i+1)%2][-1]
+        
+```
+
+#### Buy and sell at most k times
+
+<a name='188_btbss4'></a>
+
+The problem can be found in here:
+
+[Leetcode 188. Best Time to Buy and Sell Stock IV](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/description/)
+
+```python
+class Solution(object):
+    def maxProfit(self, k, prices):
+        """
+        :type k: int
+        :type prices: List[int]
+        :rtype: int
+        """
+        if not prices:
+            return 0
+            
+        n = len(prices)
+        mph = [0]*n # max_profit_here, only n extra space.
+        
+        # If we k is large, then it's the same as unlimited transactions.
+        if k >= n//2:
+            return sum(max(0, price[i]-prices[i-1]) for i in range(1, n))
+        
+        for i in range(k):
+            temp_max = mph[0] - prices[0]
+            for j in range(1, n):
+                mph[j], temp_max = max(mph[j-1], mph[j]+temp_max), max(temp_max, mph[j]-prices[j])
+        
+        return mph[-1]
+        
+```
+
+#### Buy and sell unlimited times but with cooldown
+
+<a name='309_btbss5'></a>
+
+The problem can be found in here:
+
+[Leetcode 309. Best Time to Buy and Sell Stock with Cooldown](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/description/)
 
 
 
