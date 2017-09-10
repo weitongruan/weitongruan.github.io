@@ -100,6 +100,11 @@ In this problem, we are required to perform at most two transactions.
 
 The idea is as follows: For the first transaction, it performs the same as the previous problem, but we store the maximum profit (`max_profit_here[i] = max(max_profit_here[i-1], profit_if_sell_here)`) at each time index. For the second transaction, a `temp_max` keeps track of the maximum `max_profit_here` from previous transaction minus the `prices[i]`. This `temp_max` stores from current time index `i`, what's the best time to start the second transaction. 
 
+
+mph[kk][i] = max(mph[kk][i-1], max_j(mph[kk-1][j] + prices[i] - prices[j]))
+
+= max(mph[kk][j-1], prices[i] + max_j(mph[kk-1][j] - prices[j]))
+
 ```python
 class Solution(object):
     def maxProfit(self, prices):
@@ -194,4 +199,30 @@ The problem can be found in here:
 [Leetcode 309. Best Time to Buy and Sell Stock with Cooldown](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/description/)
 
 
+profit[n] = max(profit[n-1], max_i(prices[n] - prices[i]+profit[i-2]))
+
+= max(profit[n-1], prices[n] + max_i(profit[i-2] - prices[i]))
+
+
+
+```python
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        if len(prices) < 1:
+            return 0
+        
+        n = len(prices)
+        profit = [0]*(n+2)
+        max_temp = profit[0]-prices[0]
+        
+        for i in range(n):
+            profit[i+2] = max(profit[i+1], prices[i]+max_temp)
+            max_temp = max(max_temp, profit[i]-prices[i])
+        
+        return profit[-1]
+```
 
