@@ -13,9 +13,9 @@ Table of Contents:
 - [Leetcode 560. Subarray Sum Equals K](#560_sseK)
 - [Leetcode 437. Path Sum III](#437_ps3)
 
-#### On an array
 
 <a name='560_sseK'></a>
+#### On an array
 
 [Leetcode 560. Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/description/)
 
@@ -41,10 +41,9 @@ class Solution(object):
         return res
 ```
 
-
+<a name='437_ps3'></a>
 #### On a tree
 
-<a name='437_ps3'></a>
 [Leetcode 437. Path Sum III](https://leetcode.com/problems/path-sum-iii/description/)
 
 O(n) algorithm, hash table to save a variable *sum_to_now-target*. 
