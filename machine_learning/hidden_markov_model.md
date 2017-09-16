@@ -47,9 +47,9 @@ $$
 
 A detailed derivation is provided below:
 $$
- 
  P(o_1, \cdots, o_t) = \sum_{p_t} P(o_1, \cdots, o_t, p_t)
 $$
+
 $$
  \begin{aligned}
     P(o_1, \cdots, o_t, p_t) &= \sum_{p_{t-1}} P(o_1, \cdots, o_{t-1}, o_t, p_{t-1}, p_t) \\
@@ -112,6 +112,7 @@ $$
 $$
 1 \leq j \leq N, 1 \leq t \leq T
 $$
+
 $$
 \begin{aligned}
     v_t(j) &= \max_i v_{t-1}(i) a_{ij} b_j(o_t) \\
