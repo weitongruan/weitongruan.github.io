@@ -113,8 +113,7 @@ $$
 when
 $$
 1 \leq j \leq N, 1 \leq t \leq T
-$$
-satisfies,
+$$,
 
 $$
 \begin{aligned}
