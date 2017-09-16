@@ -46,6 +46,7 @@ $$
 $$
 
 A detailed derivation is provided below:
+
 $$
  P(o_1, \cdots, o_t) = \sum_{p_t} P(o_1, \cdots, o_t, p_t)
 $$
@@ -109,9 +110,11 @@ $$
 
 - Recursion
 
+when
 $$
 1 \leq j \leq N, 1 \leq t \leq T
 $$
+satisfies,
 
 $$
 \begin{aligned}
@@ -129,6 +132,7 @@ P(o_1, \cdots, o_T, o_F, q_1, \cdots, q_T) = v_t(F) = \max_i v_{T}(j) a_{jF}
 $$
 
 The start of backpointer:
+
 $$
 b_T(F) = \arg \max_i v_{T}(j) a_{jF}
 $$
