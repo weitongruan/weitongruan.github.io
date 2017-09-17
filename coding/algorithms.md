@@ -8,6 +8,6 @@ Table of contents:
 
 [Calculate Conditional Probability](https://weitongruan.github.io/coding/algorithms/calculate_conditional_probability)
 
-
+[Combination Sum Problems](https://weitongruan.github.io/coding/algorithms/combination_sum_problem)
 
 
