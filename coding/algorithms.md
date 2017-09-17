@@ -6,4 +6,8 @@ Table of contents:
 
 [Continuous Sum Equals K Problems](https://weitongruan.github.io/coding/algorithms/continuous_sum_equals_k_problems)
 
+[Calculate Conditional Probability](https://weitongruan.github.io/coding/algorithms/calculate_conditional_probability)
+
+
+
 
