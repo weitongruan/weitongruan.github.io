@@ -9,7 +9,7 @@ Table of Contents:
 - [Leetcode 39. Combination Sum](#39_cs)
 - [Leetcode 40. Combination SumII](#40_cs2)
 - [Leetcode 216. Combination Sum III](#216_cs3)
-- [Leetcode 337. Combination Sum IV](#377_cs4)
+- [Leetcode 377. Combination Sum IV](#377_cs4)
 
 
 <a name='39_cs'></a>
