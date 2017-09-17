@@ -9,12 +9,11 @@ Table of Contents:
 - [Leetcode 39. Combination Sum](#39_cs)
 - [Leetcode 40. Combination SumII](#40_cs2)
 - [Leetcode 216. Combination Sum III](#216_cs3)
-- [Leetcode 337. Combination Sum IV](#337_cs4)
+- [Leetcode 337. Combination Sum IV](#377_cs4)
 
 
-
-#### No duplicate element, unlimited usage
 <a name='39_cs'></a>
+#### No duplicate element, unlimited usage
 
 [Leetcode 39. Combination Sum](https://leetcode.com/problems/combination-sum/description/)
 
@@ -98,7 +97,7 @@ class Solution(object):
 ```
 
 <a name='216_cs3'></a>
-#### length is fixed
+#### Length is fixed
 
 [Leetcode 216. Combination Sum III](https://leetcode.com/problems/combination-sum-iii/description/)
 
