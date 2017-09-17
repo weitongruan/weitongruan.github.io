@@ -10,7 +10,7 @@ Table of Contents:
 
 The problem statement is as follows:
 
-Suppose we have a set of tuples, where each tuple has two elements `$(p_i, y_i)$`. `$y_i$` is a discrete class label and can only be either `$+1$` or `$-1$` and `$p_i$` can be either discrete or continuous. The problem is to calculate the conditional probability `$P(p_i > p_j \lvert y_i=+1, y_j=-1)$`.
+Suppose we have a set of tuples, where each tuple has two elements $$(p_i, y_i)$$. $$y_i$$ is a discrete class label and can only be either $$+1$$ or $$-1$$ and $$p_i$$ can be either discrete or continuous. The problem is to calculate the conditional probability $$P(p_i > p_j \lvert y_i=+1, y_j=-1)$$.
 
 
 <a name='my_ideas'></a>
@@ -18,41 +18,41 @@ Suppose we have a set of tuples, where each tuple has two elements `$(p_i, y_i)$
 
 ##### First intuition:
 
-Because the conditional probability involves a pair of tuple, a ***naive*** approach can be implemented that compares every possible pair combination and use two counter to record the number of times when the conditions are satisfied. More specifically, use `$C(p_i > p_j)$` to denote the number of times this condition satisfies and use `$C(y_i = +1, y_j = -1)$` to denote the number of pairs that meet this condition, then the conditional probability can be calculated as:
+Because the conditional probability involves a pair of tuple, a ***naive*** approach can be implemented that compares every possible pair combination and use two counter to record the number of times when the conditions are satisfied. More specifically, use $$C(p_i > p_j)$$ to denote the number of times this condition satisfies and use $$C(y_i = +1, y_j = -1)$$ to denote the number of pairs that meet this condition, then the conditional probability can be calculated as:
 
-```math
+$$
 P(p_i > p_j \lvert y_i=+1, y_j=-1) = \frac{C(p_i > p_j)}{C(y_i = +1, y_j = -1)}
-```
+$$
 
-This is definitely an `$O(n^2)$` algorithm, where `$n$` stands for the total number of tuples.
+This is definitely an $$O(n^2)$$ algorithm, where $$n$$ stands for the total number of tuples.
 
 ##### Second thought:
 
-A slightly better way to use the same idea might be first split the set into two, with one being tuples with label `$+1$` and another with label `$-1$`. Suppose we have `$m$` tuples labeled `$+1$` and `$n-m$` tuples with label `$-1$`. Then for every tuple in `$+1$` set, we compare it with all tuples in `$-1$` set to check if the above conditions are met.
+A slightly better way to use the same idea might be first split the set into two, with one being tuples with label $$+1$$ and another with label $$-1$$. Suppose we have $$m$$ tuples labeled $$+1$$ and $$n-m$$ tuples with label $$-1$$. Then for every tuple in $$+1$$ set, we compare it with all tuples in $$-1$$ set to check if the above conditions are met.
 
-In this way, the total number checks reduces from `$n^2$` to `$m(n-m)$`, but still a `$O(n^2)$` algorithm.
+In this way, the total number checks reduces from $$n^2$$ to $$m(n-m)$$, but still a $$O(n^2)$$ algorithm.
 
 Can we do better?
 
 ##### Use sort:
 
-What if we first sort them using `$p$`? Because sort only takes `$O(nlogn)$`, if we can calculate the result using algorithms better than `$O(n^2)$`, we have a better algorithm.
+What if we first sort them using $$p$$? Because sort only takes $$O(nlogn)$$, if we can calculate the result using algorithms better than $$O(n^2)$$, we have a better algorithm.
 
 Let's use an example where the set is organized as a list:
 
-```math
+$$
 (-2, -1), (1, 1), (2, 1), (8, -1), (3, 1), (7, 1), (2, -1)
-```
+$$
 
-If we sort the tuples following `$p$`, the new list becomes:
+If we sort the tuples following $$p$$, the new list becomes:
 
-```math
+$$
 (-2, -1), (1, 1), (2, 1), (2, -1), (3, 1), (7, 1), (8, -1)
-```
+$$
 
-From here, we notice that both `$C(p_i > p_j)$` and `$C(y_i = +1, y_j = -1)$` can be counted by going through the sorted list, which takes only `$O(n)$`.
+From here, we notice that both $$C(p_i > p_j)$$ and $$C(y_i = +1, y_j = -1)$$ can be counted by going through the sorted list, which takes only $$O(n)$$.
 
-The way to update `$C(p_i > p_j)$` is to use two variables, ***total*** and ***up_to_now***, where ***total*** corresponds to the total number of pairs which satisfy the condition and ***up_to_now*** means the number of tuple with label `$-1$` that we have seen up to the current index. The update formula is:
+The way to update $$C(p_i > p_j)$$ is to use two variables, ***total*** and ***up_to_now***, where ***total*** corresponds to the total number of pairs which satisfy the condition and ***up_to_now*** means the number of tuple with label `$-1$` that we have seen up to the current index. The update formula is:
 
 ```python
 
@@ -84,7 +84,7 @@ def calProb(data):
 ```
 
 
-***The algorithm seems fine except we didn't consider a special case where `$p_i = p_j$`, since we are calculating the conditional probability `$P(p_i > p_j \lvert y_i = +1, y_j = -1)$`, the above code works only when data is reversely sorted according to `$y$`, which means that data with label `$+1$` has to be placed in front of `$-1$` when they share the same `$p$`.***
+***The algorithm seems fine except we didn't consider a special case where $$p_i = p_j$$, since we are calculating the conditional probability $$P(p_i > p_j \lvert y_i = +1, y_j = -1)$$, the above code works only when data is reversely sorted according to $$y$$, which means that data with label $$+1$$ has to be placed in front of $$-1$$ when they share the same $$p$$.***
 
 This sort can be easily implemented in python using the following code:
 
@@ -101,7 +101,7 @@ dataset.sort(key=lambda x: (x[0], -x[1]))
 # according to multiple attributes, e.g. np.lexsort()
 
 ```
-Hence, with a sorting as a preprocessing and a linear counting algorithm, we can calculate the result in `$O(nlogn)$` time.
+Hence, with a sorting as a preprocessing and a linear counting algorithm, we can calculate the result in $$O(nlogn)$$ time.
 
 <a name='notes_on_sorting'></a>
 #### Notes on sorting
