@@ -55,7 +55,6 @@ From here, we notice that both $$C(p_i > p_j)$$ and $$C(y_i = +1, y_j = -1)$$ ca
 The way to update $$C(p_i > p_j)$$ is to use two variables, ***total*** and ***up_to_now***, where ***total*** corresponds to the total number of pairs which satisfy the condition and ***up_to_now*** means the number of tuple with label `$-1$` that we have seen up to the current index. The update formula is:
 
 ```python
-
 if p_i == -1:
     up_to_now += 1
 else:
@@ -65,7 +64,6 @@ else:
 Suppose the input is sorted, then the code is:
 
 ```python
-
 def calProb(data):
     # data is a list of tuples sorted along p
     
@@ -80,7 +78,6 @@ def calProb(data):
             plus += 1  # number of plus gets updated by one
     
     return total / (plus * minus)
-
 ```
 
 
