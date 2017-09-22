@@ -16,6 +16,8 @@ Table of Contents:
 
 #### Regression Tree and Ensemble
 
+Reference: [Introduction to boosted trees](https://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf)
+
 1. Regression tree(aka classification and regression tree)
     - Decision rule is the same as decision tree
     - Each leaf contains a score
