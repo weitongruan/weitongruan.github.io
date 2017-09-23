@@ -12,4 +12,6 @@ Table of contents:
 
 [Combination Sum Problems](https://weitongruan.github.io/coding/algorithms/combination_sum_problems)
 
+[Combination Problems](https://weitongruan.github.io/coding/algorithms/combination_problems)
+
 
