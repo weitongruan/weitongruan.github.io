@@ -14,4 +14,6 @@ Table of contents:
 
 [Combination Problems](https://weitongruan.github.io/coding/algorithms/combination_problems)
 
+[Knapsack Problems](https://weitongruan.github.io/coding/algorithms/knapsack_problems)
+
 
