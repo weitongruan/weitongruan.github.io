@@ -16,4 +16,6 @@ Table of contents:
 
 [Knapsack Problems](https://weitongruan.github.io/coding/algorithms/knapsack_problems)
 
+[House Robber Problems](https://weitongruan.github.io/coding/algorithms/house_robber_problems)
+
 
