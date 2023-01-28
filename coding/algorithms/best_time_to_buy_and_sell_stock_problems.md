@@ -3,7 +3,7 @@
 In this post, let's talk about a series of problems related to buy and sell stocks.
 
 
-Table of Contests:
+Table of Contents:
 - [Leetcode 121. Best Time to Buy and Sell Stock](#121_btbss1)
 - [Leetcode 122. Best Time to Buy and Sell Stock II](#122_btbss2)
 - [Leetcode 123. Best Time to Buy and Sell Stock III](#123_btbss3)

@@ -18,4 +18,6 @@ Table of contents:
 
 [House Robber Problems](https://weitongruan.github.io/coding/algorithms/house_robber_problems)
 
+[Binary Search Problems](https://weitongruan.github.io/coding/algorithms/binary_search_problems)
+
 
